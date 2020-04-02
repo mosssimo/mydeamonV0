@@ -1,3 +1,5 @@
+// PRZ comment
+
 const express = require('express')
 const app = express()
 const port = 3000
@@ -13,6 +15,10 @@ function getItemByID(id) {
 
 function addItem(item) {
     item.id = nextID
+    item.utterance = "test text " + nextID
+    item.date = ""
+    item.time = ""
+    item.location = ""
     nextID++
     DB.push(item)
     return item.id
@@ -58,4 +64,13 @@ app.put('/:id', (req, res) => {
     }
 })
 
+app.delete('/:id', (req, res) => {
+    const id = parseInt(req.params.id)
+    const newItem = req.body
+    console.log("Delete:/id called", id)
+    DB.splice(id,1)
+    res.json([])
+})
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+// app.listen(port, '0.0.0.0')
