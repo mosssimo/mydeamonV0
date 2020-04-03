@@ -15,18 +15,10 @@ function getItemByID(id) {
 
 function addItem(item) {
     item.id = nextID
-    item.utterance = "test text " + nextID
-    item.date = ""
-    item.time = ""
-    item.location = ""
     nextID++
     DB.push(item)
     return item.id
 }
-
-addItem({})
-addItem({})
-addItem({})
 
 app.get('/', (req, res) => {
     console.log("get / called")
