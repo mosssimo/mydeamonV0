@@ -36,13 +36,18 @@ def locale_language():
     return language
 
 def main():
-    tts.say('Hello Paul, how are you today',volume=20)
+    tts.say('Hello Paul, how are you.',volume=20)
     logging.basicConfig(level=logging.DEBUG)
 
     parser = argparse.ArgumentParser(description='Assistant service example.')
     parser.add_argument('--language', default=locale_language())
+    parser.add_argument('-u', '--url', help="The url for the server")
     args = parser.parse_args()
-
+    api_url_base = args.url
+    if api_url_base == "None":
+        api_url_base = "http://localhost:3000"
+    print(api_url_base)
+    
     logging.info('Initializing for language %s...', args.language)
     hints = get_hints(args.language)
     client = CloudSpeechClient()
@@ -62,8 +67,7 @@ def main():
                 continue
             
             # Post text
-            api_url_base = 'http://1d26268d.ngrok.io'
-            parameters = {"Data":text,"isComplete":False}
+            parameters = {"utterance":text, "date":"","time":"","location":""}
             description = {"Content-Type":"application/json; charset=utf-8"}
             response = requests.post(api_url_base, json = parameters, headers = description)
             
