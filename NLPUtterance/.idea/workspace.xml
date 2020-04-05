@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2de9556-5164-4d42-aa09-955539349e78" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mydaemon-nlp.py" beforeDir="false" afterPath="$PROJECT_DIR$/mydaemon-nlp.py" afterDir="false" />
     </list>
@@ -24,7 +23,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CLoudSpeechCaptureUtterance/cloudspeech_put.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -83,22 +82,22 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="559" y="584" key="FileChooserDialogImpl/0.0.1920.1160@0.0.1920.1160" timestamp="1585851008618" />
-    <state width="1362" height="218" key="GridCell.Tab.0.bottom" timestamp="1585862227049">
+    <state width="1492" height="204" key="GridCell.Tab.0.bottom" timestamp="1586096387239">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1362" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1585862227049" />
-    <state width="1362" height="218" key="GridCell.Tab.0.center" timestamp="1585862227048">
+    <state width="1492" height="204" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1586096387239" />
+    <state width="1492" height="204" key="GridCell.Tab.0.center" timestamp="1586096387239">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1362" height="218" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1585862227048" />
-    <state width="1362" height="218" key="GridCell.Tab.0.left" timestamp="1585862227047">
+    <state width="1492" height="204" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1586096387239" />
+    <state width="1492" height="204" key="GridCell.Tab.0.left" timestamp="1586096387238">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1362" height="218" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1585862227047" />
-    <state width="1362" height="218" key="GridCell.Tab.0.right" timestamp="1585862227048">
+    <state width="1492" height="204" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1586096387238" />
+    <state width="1492" height="204" key="GridCell.Tab.0.right" timestamp="1586096387239">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1362" height="218" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1585862227048" />
+    <state width="1492" height="204" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1586096387239" />
     <state width="1362" height="347" key="GridCell.Tab.1.bottom" timestamp="1585849972381">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
@@ -125,17 +124,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mydaemon-nlp.py</url>
-          <line>37</line>
+          <line>40</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mydaemon-nlp.py</url>
-          <line>14</line>
+          <line>15</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mydaemon-nlp.py</url>
-          <line>16</line>
+          <line>17</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>

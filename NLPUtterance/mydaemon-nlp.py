@@ -9,6 +9,7 @@ import requests
 import time
 import sys
 import getopt
+import MyDaemon_chatbotv0 as cb
 
 def main(argv):
         #default hostname
@@ -26,6 +27,8 @@ def main(argv):
                         api_url_base = arg
         print('URL is ', api_url_base)
 
+        qa_dataset = cb.load_database()
+
         utterances_json = requests.get(api_url_base)
         #check that the response is 200 that indicates we have data
         while True:
@@ -41,20 +44,22 @@ def main(argv):
                         utterances_array = utterances_json.json()
                         if  utterances_array:
                                 #array is not empty
-                                print(utterances_json.text)
+                                #print(utterances_json.text)
+                                answer = cb.get_answer(utterances_array[0]["utterance"], qa_dataset)
+                                print(answer)
                                 #process the first utterance
-                                tokens = nltk.word_tokenize(utterances_array[0]["utterance"])
-                                tagged = nltk.pos_tag(tokens)
-                                entities = nltk.chunk.ne_chunk(tagged)
+                                #tokens = nltk.word_tokenize(utterances_array[0]["utterance"])
+                                #tagged = nltk.pos_tag(tokens)
+                                #entities = nltk.chunk.ne_chunk(tagged)
                                 #print(utterances_array[0]["utterance"])
                                 if utterances_array[0]["utterance"] == "stop all processes":
                                         break
-                                print(tokens)
-                                print(tagged)
-                                print(entities)
+                                #print(tokens)
+                                #print(tagged)
+                                #print(entities)
 
                                 #pop the last utterance
-                                print('calling delete')
+                                #print('calling delete')
                                 requests.delete(api_url_base + '/' + str(0) )
                         else:
                                 #array is empty
