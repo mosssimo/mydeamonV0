@@ -4,71 +4,56 @@
 # Paul Zanelli
 # Creation date: 4th April 2020
 
+# poll ofr utterances from "user" and create responses from "mydaemon"
+
 import nltk
 import requests
 import time
 import sys
 import getopt
 import MyDaemon_chatbotv0 as cb
+import paho.mqtt.publish as mqtt_publish
+import paho.mqtt.client as mqtt_client
+import json
+
+
+def on_connect(client, userdata, flags, rc):
+    print("Connected with result code " + str(rc))
+
+    # Subscribing in on_connect() - if we lose the connection and
+    # reconnect then subscriptions will be renewed.
+    client.subscribe("user")
+
+
+# The callback for when a PUBLISH message is received from the server.
+def on_message(client, userdata, msg):
+    message_text = msg.payload.decode('utf-8')
+    try:
+        message_json = json.loads(message_text)
+    except Exception as e:
+        print("Couldn't parse raw data: %s" % message_text, e)
+    else:
+        print("JSON received : ", message_json)
+
+    if msg.topic == "user":
+            # The msg has content from user
+            if(message_json["user"] != ""):
+                qa_dataset = cb.load_database()
+                answer = cb.get_answer(message_json["user"], qa_dataset)
+                message_json["mydaemon"] = answer
+                message_text = json.dumps(message_json)
+                mqtt_publish.single("mydaemon", message_text, hostname="test.mosquitto.org")
+                print("JSON published: ", message_json)
 
 def main(argv):
-        #default hostname
-        api_url_base = "http://localhost:3000"
-        try:
-                opts, args = getopt.getopt(argv, "u:")
-        except getopt.GetoptError:
-                print("mydaemon.py -h -u <url>")
-                sys.exit(2)
-        for opt, arg in opts:
-                if opt == '-h':
-                        print("mydaemon.py -h -u <url>")
-                        sys.exit()
-                elif opt in ("-u"):
-                        api_url_base = arg
-        print('URL is ', api_url_base)
 
-        qa_dataset = cb.load_database()
+        local_mqtt_client = mqtt_client.Client()
+        local_mqtt_client.on_connect = on_connect
+        local_mqtt_client.on_message = on_message
+        local_mqtt_client.connect("test.mosquitto.org", 1883, 60)
 
-        utterances_json = requests.get(api_url_base)
-        #check that the response is 200 that indicates we have data
         while True:
-                utterances_json = requests.get(api_url_base)
-                #print the response code
-                #print(utterances_json.status_code)
-                if utterances_json.status_code == 200:
-                        #we have received a valid response
-                        #print the json
-
-
-                        #convert json to an array
-                        utterances_array = utterances_json.json()
-                        if  utterances_array:
-                                #array is not empty
-                                #print(utterances_json.text)
-                                answer = cb.get_answer(utterances_array[0]["utterance"], qa_dataset)
-                                print(answer)
-                                #process the first utterance
-                                #tokens = nltk.word_tokenize(utterances_array[0]["utterance"])
-                                #tagged = nltk.pos_tag(tokens)
-                                #entities = nltk.chunk.ne_chunk(tagged)
-                                #print(utterances_array[0]["utterance"])
-                                if utterances_array[0]["utterance"] == "stop all processes":
-                                        break
-                                #print(tokens)
-                                #print(tagged)
-                                #print(entities)
-
-                                #pop the last utterance
-                                #print('calling delete')
-                                requests.delete(api_url_base + '/' + str(0) )
-                        else:
-                                #array is empty
-                                #print('array is empty - exit')
-                                time.sleep(5)
-                else:
-                        # response not 200
-                        # print('response not 200')
-                        time.sleep(1)
+                local_mqtt_client.loop_forever()
 
 if __name__ == '__main__':
     main(sys.argv[1:])

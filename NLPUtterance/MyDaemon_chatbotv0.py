@@ -17,6 +17,8 @@ from nltk.corpus import stopwords # for stop words
 from pathlib import Path
 from pathlib import Path, PureWindowsPath
 import getopt
+import paho.mqtt.publish as publish
+
 
 def text_normalization(text):
     text=str(text).lower() # text to lower case)
