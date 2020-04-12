@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e2de9556-5164-4d42-aa09-955539349e78" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyDaemon-question-answer-db.csv" beforeDir="false" afterPath="$PROJECT_DIR$/MyDaemon-question-answer-db.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyDaemon_chatbotv0.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyDaemon_chatbotv0.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mydaemon-nlp.py" beforeDir="false" afterPath="$PROJECT_DIR$/mydaemon-nlp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

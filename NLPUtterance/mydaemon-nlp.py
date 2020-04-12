@@ -37,10 +37,17 @@ def on_message(client, userdata, msg):
 
     if msg.topic == "user":
             # The msg has content from user
-            if(message_json["user"] != ""):
+            if message_json["user"] != "":
+                if message_json["user"].lower() == "shutdown" or message_json["user"].lower() == "shut down":
+                    sys.exit()
                 qa_dataset = cb.load_database()
                 answer = cb.get_answer(message_json["user"], qa_dataset)
                 message_json["mydaemon"] = answer
+                message_text = json.dumps(message_json)
+                mqtt_publish.single("mydaemon", message_text, hostname="test.mosquitto.org")
+                print("JSON published: ", message_json)
+            else:
+                message_json["mydaemon"] = ""
                 message_text = json.dumps(message_json)
                 mqtt_publish.single("mydaemon", message_text, hostname="test.mosquitto.org")
                 print("JSON published: ", message_json)
