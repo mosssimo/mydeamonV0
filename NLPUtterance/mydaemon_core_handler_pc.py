@@ -11,11 +11,12 @@ import requests
 import time
 import sys
 import getopt
-import MyDaemon_chatbotv0 as cb
+
 import paho.mqtt.publish as mqtt_publish
 import paho.mqtt.client as mqtt_client
 import json
 
+from mydaemon_qa import mydaemon_qa_get_response
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code " + str(rc))
@@ -23,7 +24,6 @@ def on_connect(client, userdata, flags, rc):
     # Subscribing in on_connect() - if we lose the connection and
     # reconnect then subscriptions will be renewed.
     client.subscribe("user")
-
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
@@ -40,8 +40,9 @@ def on_message(client, userdata, msg):
             if message_json["user"] != "":
                 if message_json["user"].lower() == "shutdown" or message_json["user"].lower() == "shut down":
                     sys.exit()
-                qa_dataset = cb.load_database()
-                answer = cb.get_answer(message_json["user"], qa_dataset)
+
+                #qa_dataset = cb.load_database()
+                answer = mydaemon_qa_get_response(message_json["user"])
                 message_json["mydaemon"] = answer
                 message_text = json.dumps(message_json)
                 mqtt_publish.single("mydaemon", message_text, hostname="test.mosquitto.org")
