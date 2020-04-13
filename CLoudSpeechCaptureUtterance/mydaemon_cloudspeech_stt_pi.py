@@ -12,7 +12,7 @@ import sys
 from google.cloud.speech import enums
 from google.cloud.speech import types
 
-from mydaemon_tts import mydaemon_tts_speak
+#from mydaemon_tts import mydaemon_tts_speak
 from aiy.board import Board, Led
 from aiy.cloudspeech import CloudSpeechClient
 from aiy.voice import tts
@@ -40,9 +40,10 @@ class MyDaemonSTT:
         self.hints = get_hints("en-GB")
         self.text = ""
 
-    def recognise_speech(self):
+    def capture_utterance(self):
         # recognize from the mic and store results in self.text
         self.text = self.client.recognize(self.language_code, self.hints)
+        return self.text
 
 MyDaemonSTT_ = MyDaemonSTT()
 
